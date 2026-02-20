@@ -1,53 +1,38 @@
-const Dashboard = () => {
-  return (
-    <div className="space-y-8">
+import { Flame, Footprints, Activity, Target } from "lucide-react";
+import MetricCard from "../components/dashboard/MetricCard";
+import WeeklyCaloriesChart from "../components/dashboard/WeeklyCaloriesChart";
+import MonthlyProgressChart from "../components/dashboard/MonthlyProgressChart";
+import RecentActivities from "../components/dashboard/RecentActivities";
+import Achievements from "../components/dashboard/Achievements";
 
-      {/* Header */}
-      <div>
-        <h1 className="text-4xl font-bold text-gray-800">Dashboard</h1>
-        <p className="text-gray-500 mt-2">
+export default function Dashboard() {
+  return (
+    <div className="min-h-screen bg-[#F5F3ED] px-6 py-10">
+
+      <div className="mb-10">
+        <h1 className="text-[48px] font-bold text-[#2E3D2F]">
+          Dashboard
+        </h1>
+        <p className="text-[#6B7C6B] text-lg">
           Welcome back! Here's your fitness overview.
         </p>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        {/* Calories */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h3 className="text-gray-500 text-sm">Calories Burned</h3>
-          <p className="text-3xl font-bold text-green-700 mt-2">
-            0 <span className="text-lg text-gray-500">kcal</span>
-          </p>
-        </div>
-
-        {/* Steps */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h3 className="text-gray-500 text-sm">Steps Today</h3>
-          <p className="text-3xl font-bold text-green-700 mt-2">
-            0 <span className="text-lg text-gray-500">steps</span>
-          </p>
-        </div>
-
-        {/* Active Minutes */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h3 className="text-gray-500 text-sm">Active Minutes</h3>
-          <p className="text-3xl font-bold text-green-700 mt-2">
-            0 <span className="text-lg text-gray-500">min</span>
-          </p>
-        </div>
-
-        {/* Weekly Goal */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h3 className="text-gray-500 text-sm">Weekly Goal</h3>
-          <p className="text-3xl font-bold text-green-700 mt-2">
-            0 <span className="text-lg text-gray-500">%</span>
-          </p>
-        </div>
-
+      <div className="grid md:grid-cols-2 gap-8 mb-14">
+        <MetricCard icon={Flame} title="Calories Burned" value="2,547" unit="kcal" trend="+12%" />
+        <MetricCard icon={Footprints} title="Steps Today" value="8,432" unit="steps" trend="+8%" />
+        <MetricCard icon={Activity} title="Active Minutes" value="47" unit="min" trend="+15%" />
+        <MetricCard icon={Target} title="Weekly Goal" value="78" unit="%" trend="+5%" />
       </div>
+
+      <div className="grid lg:grid-cols-2 gap-10 mb-14">
+        <WeeklyCaloriesChart />
+        <MonthlyProgressChart />
+      </div>
+
+      <RecentActivities />
+      <Achievements />
+
     </div>
   );
-};
-
-export default Dashboard;
+}
