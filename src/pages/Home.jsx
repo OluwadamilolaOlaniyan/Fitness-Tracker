@@ -58,7 +58,7 @@ export default function Home() {
 
           <h1 className="text-5xl font-bold mb-6">
             Your Journey to a{" "}
-            <span className="text-green-600">Healthier You</span>
+            <span className="text-green-900">Healthier You</span>
           </h1>
 
           <p className="text-lg text-gray-600 mb-8">
@@ -69,7 +69,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/dashboard"
-              className="bg-green-600 text-white px-8 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-700 transition"
+              className="bg-green-900 text-white px-8 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-800 transition"
             >
               Start Your Journey
               <ArrowRight size={18} />
@@ -77,7 +77,7 @@ export default function Home() {
 
             <Link
               to="/workout"
-              className="border border-green-600 text-green-600 px-8 py-3 rounded-lg hover:bg-green-600 hover:text-white transition"
+              className="border border-green-900 text-green-900 px-8 py-3 rounded-lg hover:bg-green-900 hover:text-white transition"
             >
               Explore Workouts
             </Link>
@@ -91,7 +91,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid sm:grid-cols-3 gap-8 text-center px-6">
           {stats.map((stat, index) => (
             <div key={index}>
-              <div className="text-4xl font-bold text-green-600">
+              <div className="text-4xl font-bold text-green-900">
                 {stat.value}
               </div>
               <div className="text-gray-500">{stat.label}</div>
@@ -120,7 +120,7 @@ export default function Home() {
                 className="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition"
               >
                 <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                  <Icon className="text-green-600" size={24} />
+                  <Icon className="text-green-900" size={24} />
                 </div>
 
                 <h3 className="text-xl font-semibold mb-2">
@@ -139,7 +139,7 @@ export default function Home() {
       {/* CTA SECTION */}
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="bg-green-600 text-white rounded-3xl p-12">
+          <div className="bg-green-900 text-white rounded-3xl p-12">
 
             <h2 className="text-3xl font-bold mb-4">
               Ready to Transform Your Life?

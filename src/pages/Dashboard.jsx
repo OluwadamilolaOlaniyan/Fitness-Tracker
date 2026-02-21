@@ -10,7 +10,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#F5F3ED] px-6 py-10">
 
       <div className="mb-10">
-        <h1 className="text-[48px] font-bold text-[#2E3D2F]">
+        <h1 className="text-[48px] font-bold text-[#273e29]">
           Dashboard
         </h1>
         <p className="text-[#6B7C6B] text-lg">
