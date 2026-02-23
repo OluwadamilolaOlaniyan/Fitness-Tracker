@@ -1,5 +1,4 @@
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   TrendingUp,
   Dumbbell,
@@ -8,8 +7,42 @@ import {
   Target,
   ArrowRight,
 } from "lucide-react";
+import { useState, useContext } from "react";
+import { auth } from "../firebase";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleRegister = async () => {
+    try {
+      setError("");
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleLogin = async () => {
+    try {
+      setError("");
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const features = [
     {
       icon: TrendingUp,
@@ -54,33 +87,85 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="py-24 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
 
-          <h1 className="text-5xl font-bold mb-6">
-            Your Journey to a{" "}
-            <span className="text-green-900">Healthier You</span>
-          </h1>
+          {/* Left Text */}
+          <div>
+            <h1 className="text-5xl font-bold mb-6">
+              Your Journey to a{" "}
+              <span className="text-green-900">Healthier You</span>
+            </h1>
 
-          <p className="text-lg text-gray-600 mb-8">
-            Track workouts, monitor health metrics, and achieve your fitness
-            goals with FitTrack's comprehensive wellness platform.
-          </p>
+            <p className="text-lg text-gray-600 mb-8">
+              Track workouts, monitor health metrics, and achieve your fitness
+              goals with FitTrack's comprehensive wellness platform.
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/dashboard"
-              className="bg-green-900 text-white px-8 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-800 transition"
-            >
-              Start Your Journey
-              <ArrowRight size={18} />
-            </Link>
+            {!user && (
+              <div className="space-y-4">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full p-3 border rounded-lg"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
 
-            <Link
-              to="/workout"
-              className="border border-green-900 text-green-900 px-8 py-3 rounded-lg hover:bg-green-900 hover:text-white transition"
-            >
-              Explore Workouts
-            </Link>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="w-full p-3 border rounded-lg"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+
+                {error && (
+                  <p className="text-red-500 text-sm">{error}</p>
+                )}
+
+                <div className="flex gap-4">
+                  <button
+                    onClick={handleLogin}
+                    className="flex-1 bg-green-900 text-white py-3 rounded-lg hover:bg-green-800 transition"
+                  >
+                    Login
+                  </button>
+
+                  <button
+                    onClick={handleRegister}
+                    className="flex-1 border border-green-900 text-green-900 py-3 rounded-lg hover:bg-green-900 hover:text-white transition"
+                  >
+                    Register
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {user && (
+              <div className="mt-6">
+                <p className="mb-4 text-green-900 font-medium">
+                  Welcome back, {user.email}
+                </p>
+                <Link
+                  to="/dashboard"
+                  className="bg-green-900 text-white px-8 py-3 rounded-lg inline-flex items-center gap-2 hover:bg-green-800 transition"
+                >
+                  Go to Dashboard
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/*  Right side text */}
+          <div className="hidden lg:block bg-white p-10 rounded-3xl shadow-lg">
+            <h3 className="text-2xl font-semibold mb-4">
+              Why Choose FitTrack?
+            </h3>
+            <ul className="space-y-3 text-gray-600">
+              <li>✔ Personalized workout tracking</li>
+              <li>✔ Nutrition & health monitoring</li>
+              <li>✔ Real-time progress analytics</li>
+              <li>✔ Cloud-saved workout history</li>
+            </ul>
           </div>
 
         </div>
@@ -133,31 +218,6 @@ export default function Home() {
               </div>
             );
           })}
-        </div>
-      </section>
-
-      {/* CTA SECTION */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="bg-green-900 text-white rounded-3xl p-12">
-
-            <h2 className="text-3xl font-bold mb-4">
-              Ready to Transform Your Life?
-            </h2>
-
-            <p className="text-lg opacity-90 mb-8">
-              Join thousands of users who are already achieving their fitness goals with FitTrack.
-            </p>
-
-            <Link
-              to="/dashboard"
-              className="bg-white text-green-600 px-8 py-3 rounded-lg hover:opacity-90 transition inline-flex items-center gap-2"
-            >
-              Get Started for Free
-              <ArrowRight size={18} />
-            </Link>
-
-          </div>
         </div>
       </section>
 

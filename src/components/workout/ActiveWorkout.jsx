@@ -1,7 +1,21 @@
 
 import { Clock, Flame, Check } from "lucide-react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebase";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function ActiveWorkout() {
+  const { user } = useContext(AuthContext);
+
+const saveWorkout = async () => {
+  await addDoc(collection(db, "users", user.uid, "workouts"), {
+    name: "Strength Builder",
+    duration: "45 min",
+    calories: 380,
+    date: new Date()
+  });
+};  
   const exercises = [
     { name: "Squats", sets: "3 sets × 12", completed: true },
     { name: "Push-ups", sets: "3 sets × 15", current: true },
