@@ -44,7 +44,7 @@ export default function Workout() {
       {/* Content */}
       <div className="mt-12">
 
-        {/* WORKOUT PLANS TAB */}
+        {/* WORKOUT PLANS */}
         {activeTab === "plans" && (
           <>
             {/* Custom Designed Plans */}
@@ -52,18 +52,18 @@ export default function Workout() {
               <WorkoutCard
                 title="Strength Builder"
                 description="Build muscle and increase strength"
-                duration="45 min"
-                calories="380 kcal"
+                duration="45"
+                calories="380"
                 exercises="8 exercises"
-                level="Intermediate"
+                level="Beginner"
                 image="https://images.unsplash.com/photo-1599058917765-a780eda07a3e"
               />
 
               <WorkoutCard
                 title="Yoga Flow"
                 description="Improve flexibility and balance"
-                duration="40 min"
-                calories="180 kcal"
+                duration="40"
+                calories="180"
                 exercises="10 exercises"
                 level="Beginner"
                 image="https://images.unsplash.com/photo-1506126613408-eca07ce68773"
@@ -72,8 +72,8 @@ export default function Workout() {
               <WorkoutCard
                 title="Cardio Blast"
                 description="High-intensity cardio workout"
-                duration="30 min"
-                calories="420 kcal"
+                duration="30"
+                calories="420"
                 exercises="6 exercises"
                 level="Advanced"
                 image="https://images.unsplash.com/photo-1549060279-7e168fcee0c2"
@@ -82,7 +82,6 @@ export default function Workout() {
               <CreateWorkoutCard />
             </div>
 
-            {/* Divider */}
             <div className="mb-6">
               <h2 className="text-2xl font-semibold text-[#2E3D2F]">
                 Explore More Exercises

@@ -1,4 +1,3 @@
-
 import {
   LineChart,
   Line,
@@ -6,45 +5,39 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  CartesianGrid,
 } from "recharts";
 
-const data = [
-  { day: "Mon", calories: 2100 },
-  { day: "Tue", calories: 2300 },
-  { day: "Wed", calories: 2200 },
-  { day: "Thu", calories: 2500 },
-  { day: "Fri", calories: 2300 },
-  { day: "Sat", calories: 2800 },
-  { day: "Sun", calories: 2600 },
-];
+export default function WeeklyCaloriesChart({ data = [] }) {
+  const formatted = [
+    { day: "Mon", value: data[0] || 0 },
+    { day: "Tue", value: data[1] || 0 },
+    { day: "Wed", value: data[2] || 0 },
+    { day: "Thu", value: data[3] || 0 },
+    { day: "Fri", value: data[4] || 0 },
+    { day: "Sat", value: data[5] || 0 },
+    { day: "Sun", value: data[6] || 0 },
+  ];
 
-export default function WeeklyCaloriesChart() {
   return (
-    <div className="bg-white rounded-3xl p-10 shadow-sm border border-[#E6E2DA] animate-fadeIn">
+    <div className="bg-white p-6 rounded-3xl shadow">
+      <h2 className="text-xl font-semibold mb-6">Weekly Calories</h2>
 
-      <h2 className="text-2xl font-semibold text-[#2E3D2F] mb-6">
-        Weekly Calories
-      </h2>
-
-      <div className="h-72">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#E6E2DA" />
-            <XAxis dataKey="day" stroke="#6B7C6B" />
-            <YAxis stroke="#6B7C6B" />
-            <Tooltip />
-            <Line
-              type="monotone"
-              dataKey="calories"
-              stroke="#7A9B7E"
-              strokeWidth={3}
-              dot={{ r: 5 }}
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-
+      <ResponsiveContainer width="100%" height={250}>
+        <LineChart data={formatted}>
+          <XAxis dataKey="day" />
+          <YAxis />
+          <Tooltip />
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke="#7A9B7E"
+            strokeWidth={3}
+            dot={{ r: 5 }}
+            isAnimationActive={true}
+            animationDuration={1200}
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }

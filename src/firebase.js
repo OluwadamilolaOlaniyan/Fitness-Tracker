@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBzf8ma9Bs0qcK2pZkl_hY5BSjweFjNgSM",
+  authDomain: "fitness-tracker-applicat-1a8a4.firebaseapp.com",
+  projectId: "fitness-tracker-applicat-1a8a4",
+  storageBucket: "fitness-tracker-applicat-1a8a4.firebasestorage.app",
+  messagingSenderId: "621967991528",
+  appId: "1:621967991528:web:ee4e0e843606cde56d1f5d",
 };
 
 const app = initializeApp(firebaseConfig);

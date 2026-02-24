@@ -1,27 +1,13 @@
-import axios from "axios";
-
-const BASE_URL = "https://wger.de/api/v2";
-
 export const fetchExercises = async () => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/exercise/?language=2&limit=20`
-    );
-    return response.data.results;
-  } catch (error) {
-    console.error("Error fetching exercises:", error);
-    throw error;
-  }
-};
+  const response = await fetch(
+    "https://wger.de/api/v2/exercise/"
+  );
 
-export const fetchExercisesByMuscle = async (muscleId) => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/exercise/?language=2&muscle=${muscleId}`
-    );
-    return response.data.results;
-  } catch (error) {
-    console.error("Error fetching exercises by muscle:", error);
-    throw error;
+  if (!response.ok) {
+    throw new Error("Failed to fetch exercises");
   }
+
+  const data = await response.json();
+
+  return data.results; 
 };

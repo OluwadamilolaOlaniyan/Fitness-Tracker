@@ -1,41 +1,43 @@
-
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  CartesianGrid,
 } from "recharts";
 
-const data = [
-  { week: "Week 1", progress: 65 },
-  { week: "Week 2", progress: 70 },
-  { week: "Week 3", progress: 73 },
-  { week: "Week 4", progress: 80 },
-];
+export default function WeeklyCaloriesChart({ data = [] }) {
+  const formatted = [
+    { day: "Mon", value: data[0] || 0 },
+    { day: "Tue", value: data[1] || 0 },
+    { day: "Wed", value: data[2] || 0 },
+    { day: "Thu", value: data[3] || 0 },
+    { day: "Fri", value: data[4] || 0 },
+    { day: "Sat", value: data[5] || 0 },
+    { day: "Sun", value: data[6] || 0 },
+  ];
 
-export default function MonthlyProgressChart() {
   return (
-    <div className="bg-white rounded-3xl p-10 shadow-sm border border-[#E6E2DA] animate-fadeIn">
+    <div className="bg-white p-6 rounded-3xl shadow">
+      <h2 className="text-xl font-semibold mb-6">Weekly Calories</h2>
 
-      <h2 className="text-2xl font-semibold text-[#2E3D2F] mb-6">
-        Monthly Progress
-      </h2>
-
-      <div className="h-72">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#E6E2DA" />
-            <XAxis dataKey="week" stroke="#6B7C6B" />
-            <YAxis stroke="#6B7C6B" />
-            <Tooltip />
-            <Bar dataKey="progress" fill="#7A9B7E" radius={[8, 8, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-
+      <ResponsiveContainer width="100%" height={250}>
+        <LineChart data={formatted}>
+          <XAxis dataKey="day" />
+          <YAxis />
+          <Tooltip />
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke="#7A9B7E"
+            strokeWidth={3}
+            dot={{ r: 5 }}
+            isAnimationActive={true}
+            animationDuration={1200}
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }

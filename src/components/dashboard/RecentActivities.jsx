@@ -1,47 +1,34 @@
-export default function RecentActivities() {
-  const activities = [
-    { name: "Running", time: "2 hours ago", duration: "32 min", kcal: "380 kcal" },
-    { name: "Yoga", time: "Yesterday", duration: "45 min", kcal: "180 kcal" },
-    { name: "Cycling", time: "2 days ago", duration: "50 min", kcal: "420 kcal" },
-    { name: "Strength Training", time: "3 days ago", duration: "40 min", kcal: "350 kcal" },
-  ];
-
+export default function RecentActivities({ activities = [] }) {
   return (
-    <div className="bg-white rounded-3xl p-10 shadow-sm border border-[#E6E2DA] animate-fadeIn">
-
-      <h2 className="text-2xl font-semibold text-[#2E3D2F] mb-8">
+    <div className="bg-white p-8 rounded-3xl shadow mb-14">
+      <h2 className="text-2xl font-bold mb-6 text-[#273e29]">
         Recent Activities
       </h2>
 
-      <div className="space-y-6">
-        {activities.map((activity, index) => (
+      {activities.length === 0 ? (
+        <div className="text-center py-12">
+          <p className="text-[#6B7C6B] text-lg">
+            No activity yet.
+          </p>
+          <p className="text-sm text-gray-400 mt-2">
+            Start your first workout 💪
+          </p>
+        </div>
+      ) : (
+        activities.map((activity, index) => (
           <div
             key={index}
-            className="bg-[#F1F5F1] rounded-2xl p-6 flex flex-col sm:flex-row 
-                       justify-between items-start sm:items-center gap-4 
-                       hover:shadow-md transition duration-300"
+            className="flex justify-between items-center py-4 border-b last:border-none"
           >
             <div>
-              <h3 className="text-lg font-semibold text-[#2E3D2F]">
-                {activity.name}
-              </h3>
-              <p className="text-[#6B7C6B] text-sm">
-                {activity.time}
-              </p>
-            </div>
-
-            <div className="text-left sm:text-right">
-              <p className="text-lg font-semibold text-[#2E3D2F]">
-                {activity.duration}
-              </p>
-              <p className="text-[#6B7C6B] text-sm">
-                {activity.kcal}
+              <p className="font-semibold">{activity.title}</p>
+              <p className="text-sm text-gray-500">
+                {activity.duration} min • {activity.calories} kcal
               </p>
             </div>
           </div>
-        ))}
-      </div>
-
+        ))
+      )}
     </div>
   );
 }
