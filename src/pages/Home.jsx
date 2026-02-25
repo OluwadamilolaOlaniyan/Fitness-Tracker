@@ -77,8 +77,8 @@ export default function Home() {
   ];
 
   const stats = [
-    { value: "50K+", label: "Active Users" },
-    { value: "1M+", label: "Workouts Logged" },
+    { value: "1", label: "Active Users" },
+    { value: "10", label: "Workouts Logged" },
     { value: "4.9", label: "App Rating" },
   ];
 
