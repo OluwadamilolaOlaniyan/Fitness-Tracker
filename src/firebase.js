@@ -9,7 +9,6 @@ const firebaseConfig = {
   storageBucket: "fitness-tracker-applicat-1a8a4.firebasestorage.app",
   messagingSenderId: "621967991528",
   appId: "1:621967991528:web:ee4e0e843606cde56d1f5d",
-  measurementId: "G-ZRL12K61CE"
 };
 
 const app = initializeApp(firebaseConfig);
