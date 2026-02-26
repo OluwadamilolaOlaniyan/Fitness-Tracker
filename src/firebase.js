@@ -3,13 +3,12 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAR7PYCwE16zMhNa4P-KWRwbg73bGtjeL0",
-  authDomain: "fitness-tracker-applicat-1a8a4.firebaseapp.com",
-  projectId: "fitness-tracker-applicat-1a8a4",
-  storageBucket: "fitness-tracker-applicat-1a8a4.firebasestorage.app",
-  messagingSenderId: "621967991528",
-  appId: "1:621967991528:web:034b2df3624c74fe6d1f5d",
-  measurementId: "G-D4ZH1LG7SH"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
